@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Provider from "@/lib/QueryProvider";
+import QueryProvider from "@/lib/Providers/QueryProvider";
+import { ThemeProvider } from "@/lib/Providers/theme-provider";
+import TopBar from "@/components/TopBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +20,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`inter.className` + `text-black`}>
-        <Provider>{children}</Provider>
+        <QueryProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <main className="w-full flex flex-col">
+              <TopBar />
+              {children}
+            </main>
+          </ThemeProvider>
+        </QueryProvider>
       </body>
     </html>
   );

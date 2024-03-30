@@ -12,7 +12,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 // between all requests and means _all_ data gets passed to _all_ users.
 // Besides being bad for performance, this also leaks any sensitive data.
 
-export default function Provider({ children }: { children: React.ReactNode }) {
+export default function QueryProvider({ children }: { children: React.ReactNode }) {
   // Instead do this, which ensures each request has its own cache:
   const [queryClient] = useState(
     () =>
