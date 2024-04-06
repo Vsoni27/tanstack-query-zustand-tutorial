@@ -4,7 +4,7 @@ import "./globals.css";
 import QueryProvider from "@/lib/Providers/QueryProvider";
 import { ThemeProvider } from "@/lib/Providers/theme-provider";
 import TopBar from "@/components/TopBar";
-
+import { TaskStoreProvider } from "@/lib/Providers/task-store-provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -20,19 +20,21 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`inter.className` + `text-black`}>
-        <QueryProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <main className="w-full flex flex-col">
-              <TopBar />
-              {children}
-            </main>
-          </ThemeProvider>
-        </QueryProvider>
+        <TaskStoreProvider>
+          <QueryProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <main className="w-full flex flex-col h-screen">
+                <TopBar />
+                {children}
+              </main>
+            </ThemeProvider>
+          </QueryProvider>
+        </TaskStoreProvider>
       </body>
     </html>
   );

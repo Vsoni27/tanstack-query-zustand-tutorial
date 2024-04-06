@@ -34,7 +34,7 @@ export default function PostForm() {
     mutationFn: CreatePost,
     onSuccess: (data) => {
       toast.success("Post Created Successfully");
-      console.log("data while submitting", data);
+      // console.log("data while submitting", data);
     },
     onError: (error) => toast.error(error.message),
   });
